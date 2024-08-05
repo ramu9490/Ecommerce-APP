@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="row"  >
+        <div class="col-md-6">
+            <table border="2px" class="table table-hover">
+                <thead>
+                    <th>ProductName</th>
+                    <th>ProductPrice</th>
+                    <th>Quantity</th>
+                </thead>
+                <tbody id="tbody" >
+                </tbody>
+              </table> 
+              <a class="btn btn-outline-primary" href="customerData.html">Continue</a>
+        </div>
+    </div>
+
+ 
+
+  <script>
+    // Fetch cart data from localStorage
+    let cartData = JSON.parse(localStorage.getItem('cart'));
+var totalPrice=0
+var totalQuntity=0
+    // Check if cartData exists and is an object
+    if (cartData && typeof cartData === 'object') {
+        // Loop through cartData and append rows to the table
+        Object.keys(cartData).forEach(key => {
+            const item = cartData[key];
+            const myName = item[0];
+            const myPrice = item[1];
+            const myQuantity = item[2];
+            totalPrice= totalPrice+myPrice
+            totalQuntity=totalQuntity+myQuantity
+
+            localStorage.setItem('total', totalPrice)
+
+
+            $('#tbody').append(`<tr><td>${myName}</td><td>${myPrice}</td><td>${myQuantity}</td></tr>`);
+        });
+    } else {
+        console.log('No cart data found or data is not an object');
+    }
+    $("#tbody").append(`<tr><td>TotalPrice</td><td>${totalPrice}</td><td>${totalQuntity}</td></tr>`)
+  </script>
+</body>
+</html>

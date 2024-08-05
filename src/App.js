@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './COMPONENTS/Navbar';
+import Card from './COMPONENTS/card';
+import Signin from './COMPONENTS/Signin';
+import SearchResults from './COMPONENTS/SearchResults';
+import ContactUs from './COMPONENTS/ContactUs';
 
 function App() {
+  const [isLogedin, setLogedin] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <Navbar data={setLogedin} initial={isLogedin} />
+        <Routes>
+          <Route path="/home" element={<Card />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/signin" element={<Signin info={setLogedin} />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/category/:categoryName" element={<Card />} />
+          
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
