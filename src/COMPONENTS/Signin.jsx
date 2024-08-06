@@ -28,7 +28,6 @@ function Signin(props) {
                 <p className="lead" style={{ fontFamily: 'Arial, sans-serif', color: '#555' }}>
                     Sign in to start your shopping experience.
                 </p>
-                {/* Centering the button */}
                 <div className="d-flex justify-content-center">
                     <button 
                         type="button" 
@@ -36,7 +35,7 @@ function Signin(props) {
                         onClick={loginPage} 
                         style={{ marginTop: '30px' }}
                     >
-                        SignInWithGoogle
+                        Sign In with Google
                     </button>
                 </div>
             </div>
